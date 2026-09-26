@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vendor Business</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ================= TOP BAR ================= -->
+
+    <header class="topbar">
+
+        <div class="brand">
+
+            <button id="menuButton" class="icon-button">
+                ☰
+            </button>
+
+            <div>
+                <h2>Vendor Business</h2>
+                <small>Business Management</small>
+            </div>
+
+        </div>
+
+        <div class="top-actions">
+
+            <button id="searchButton" class="icon-button">
+                🔎
+            </button>
+
+            <button id="notificationButton" class="icon-button notification-button">
+                🔔
+                <span id="notificationBadge">0</span>
+            </button>
+
+            <button id="themeButton" class="icon-button">
+                🌙
+            </button>
+
+            <button id="profileButton" class="profile-button">
+                <span class="avatar-small">V</span>
+                <span>Vendor</span>
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= BODY ================= -->
+
+    <div class="body-layout">
+
+        <!-- ================= SIDEBAR ================= -->
+
+        <aside id="sidebar" class="sidebar">
+
+            <div class="sidebar-heading">
+                MENU
+            </div>
+
+            <button class="nav-item active" data-page="dashboard">
+                <span>🏠</span>
+                <span>Dashboard</span>
+            </button>
+
+            <button class="nav-item" data-page="chats">
+                <span>💬</span>
+                <span>Chats</span>
+            </button>
+
+            <button class="nav-item" data-page="images">
+                <span>🖼️</span>
+                <span>Images</span>
+            </button>
+
+            <button class="nav-item" data-page="graphs">
+                <span>📊</span>
+                <span>Graphs</span>
+            </button>
+
+            <button class="nav-item" data-page="tasks">
+                <span>📋</span>
+                <span>Tasks</span>
+            </button>
+
+            <button class="nav-item" data-page="customers">
+                <span>👥</span>
+                <span>Customers</span>
+            </button>
+
+            <button class="nav-item" data-page="stock">
+                <span>📦</span>
+                <span>Stock</span>
+            </button>
+
+            <button class="nav-item" data-page="promotions">
+                <span>📢</span>
+                <span>Promotions</span>
+            </button>
+
+            <button class="nav-item" data-page="orders">
+                <span>🛒</span>
+                <span>Orders</span>
+            </button>
+
+            <button class="nav-item" data-page="materials">
+                <span>🧱</span>
+                <span>Materials</span>
+            </button>
+
+            <button class="nav-item" data-page="certificates">
+                <span>📜</span>
+                <span>Certificates</span>
+            </button>
+
+            <button class="nav-item" data-page="debt">
+                <span>💰</span>
+                <span>Debt</span>
+            </button>
+
+            <div class="sidebar-bottom">
+
+                <button class="nav-item" data-page="assistant">
+                    <span>🤖</span>
+                    <span>Business Assistant</span>
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- ================= MAIN CONTENT ================= -->
+
+        <main class="main-content">
+
+            <!-- ================= DASHBOARD ================= -->
+
+            <section id="dashboard" class="page active">
+
+                <div class="page-header">
+
+                    <div>
+                        <h1>Business Dashboard</h1>
+                        <p id="currentDate"></p>
+                    </div>
+
+                    <button class="primary-button" id="quickSaleButton">
+                        + Quick Sale
+                    </button>
+
+                </div>
+
+
+                <!-- STAT CARDS -->
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <div class="stat-icon blue">₹</div>
+
+                        <div>
+                            <p>Total Sales</p>
+                            <h2 id="salesValue">₹0</h2>
+                            <small id="salesChange">This month</small>
+                        </div>
+                    </div>
+
+
+                    <div class="stat-card">
+                        <div class="stat-icon green">📈</div>
+
+                        <div>
+                            <p>Profit</p>
+                            <h2 id="profitValue">₹0</h2>
+                            <small>This month</small>
+                        </div>
+                    </div>
+
+
+                    <div class="stat-card">
+                        <div class="stat-icon orange">📦</div>
+
+                        <div>
+                            <p>Stock Items</p>
+                            <h2 id="stockValue">0</h2>
+                            <small id="lowStockText">0 low stock</small>
+                        </div>
+                    </div>
+
+
+                    <div class="stat-card">
+                        <div class="stat-icon purple">👥</div>
+
+                        <div>
+                            <p>Customers</p>
+                            <h2 id="customerValue">0</h2>
+                            <small>Registered</small>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- DASHBOARD GRID -->
+
+                <div class="dashboard-grid">
+
+                    <!-- SALES GRAPH -->
+
+                    <div class="card large-card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <h3>Monthly Sales</h3>
+                                <p>Business performance</p>
+                            </div>
+
+                            <select id="chartType">
+                                <option value="sales">Sales</option>
+                                <option value="profit">Profit</option>
+                                <option value="orders">Orders</option>
+                            </select>
+
+                        </div>
+
+                        <div id="salesChart" class="chart"></div>
+
+                    </div>
+
+
+                    <!-- DAILY TASKS -->
+
+                    <div class="card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <h3>Daily To-Do</h3>
+                                <p id="taskSummary">0 pending</p>
+                            </div>
+
+                            <button class="small-button" id="addTaskButton">
+                                + Add
+                            </button>
+
+                        </div>
+
+                        <div id="dashboardTasks" class="task-list"></div>
+
+                    </div>
+
+
+                    <!-- MATERIALS -->
+
+                    <div class="card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <h3>Materials</h3>
+                                <p>Current availability</p>
+                            </div>
+
+                        </div>
+
+                        <div id="materialsDashboard"></div>
+
+                    </div>
+
+
+                    <!-- PROFIT -->
+
+                    <div class="card profit-card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <h3>Profit Overview</h3>
+                                <p>This month</p>
+                            </div>
+
+                            <span class="profit-icon">💰</span>
+
+                        </div>
+
+                        <h1 id="profitBig">₹0</h1>
+
+                        <div class="profit-bar">
+                            <div id="profitBar"></div>
+                        </div>
+
+                        <p id="profitMessage">
+                            Start recording sales to see your profit.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- QUICK ACCESS -->
+
+                <div class="section-title">
+                    <h2>Quick Access</h2>
+                </div>
+
+                <div class="quick-grid">
+
+                    <button class="quick-card" data-page="customers">
+                        <span>👥</span>
+                        <strong>Customers</strong>
+                        <small>Manage customers</small>
+                    </button>
+
+                    <button class="quick-card" data-page="stock">
+                        <span>📦</span>
+                        <strong>Stock</strong>
+                        <small>Manage inventory</small>
+                    </button>
+
+                    <button class="quick-card" data-page="orders">
+                        <span>🛒</span>
+                        <strong>Orders</strong>
+                        <small>Track orders</small>
+                    </button>
+
+                    <button class="quick-card" data-page="debt">
+                        <span>💰</span>
+                        <strong>Debt</strong>
+                        <small>Track payments</small>
+                    </button>
+
+                    <button class="quick-card" data-page="assistant">
+                        <span>🤖</span>
+                        <strong>AI Assistant</strong>
+                        <small>Business help</small>
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= CHATS ================= -->
+
+            <section id="chats" class="page">
+
+                <div class="page-header">
+                    <div>
+                        <h1>Chats</h1>
+                        <p>Business communication</p>
+                    </div>
+                </div>
+
+                <div class="chat-layout">
+
+                    <div class="chat-list">
+
+                        <div class="chat-user active">
+                            <div class="avatar">AK</div>
+                            <div>
+                                <strong>Arun Kumar</strong>
+                                <small>Can you send the order?</small>
+                            </div>
+                        </div>
+
+                        <div class="chat-user">
+                            <div class="avatar">RS</div>
+                            <div>
+                                <strong>Ravi Stores</strong>
+                                <small>Payment completed</small>
+                            </div>
+                        </div>
+
+                        <div class="chat-user">
+                            <div class="avatar">SK</div>
+                            <div>
+                                <strong>Sri Kumar</strong>
+                                <small>Need 20 units</small>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="chat-window">
+
+                        <div class="chat-header">
+                            <strong>Arun Kumar</strong>
+                            <small>Customer</small>
+                        </div>
+
+                        <div id="messages" class="messages">
+
+                            <div class="message received">
+                                Hello, I need an order update.
+                            </div>
+
+                            <div class="message sent">
+                                Sure. I will check it now.
+                            </div>
+
+                        </div>
+
+                        <div class="chat-input">
+
+                            <input
+                                id="chatInput"
+                                type="text"
+                                placeholder="Type a message..."
+                            >
+
+                            <button id="sendMessage">
+                                Send
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= IMAGES ================= -->
+
+            <section id="images" class="page">
+
+                <div class="page-header">
+
+                    <div>
+                        <h1>Images</h1>
+                        <p>Business image library</p>
+                    </div>
+
+                    <label class="primary-button upload-button">
+                        Upload Image
+                        <input id="imageUpload" type="file" accept="image/*" hidden>
+                    </label>
+
+                </div>
+
+                <div id="imageGallery" class="image-gallery"></div>
+
+            </section>
+
+
+            <!-- ================= GRAPHS ================= -->
+
+            <section id="graphs" class="page">
+
+                <div class="page-header">
+
+                    <div>
+                        <h1>Business Graphs</h1>
+                        <p>Analyze your business performance</p>
+                    </div>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-header">
+                        <div>
+                            <h3>Sales Performance</h3>
+                            <p>Monthly sales data</p>
+                        </div>
+                    </div>
+
+                    <div id="largeChart" class="large-chart"></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= TASKS ================= -->
+
+            <section id="tasks" class="page">
+
+                <div class="page-header">
+
+                    <div>
+                        <h1>Tasks</h1>
+                        <p>Manage your daily business activities</p>
+                    </div>
+
+                    <button class="primary-button" id="addTaskFull">
+                        + Add Task
+                    </button>
+
+                </div>
+
+                <div class="card">
+
+                    <div id="fullTasks" class="full-task-list"></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= CUSTOMERS ================= -->
+
+            <section id="customers" class="page">
+
+                <div class="page-header">
+
+                    <div>
+                        <h1>Customers</h1>
+                        <p>Manage your customers</p>
+                    </div>
+
+                    <button class="primary-button" id="addCustomerButton">
+                        + Add Customer
+                    </button>
+
+                </div>
+
+                <div id="customerGrid" class="customer-grid"></div>
+
+            </section>
+
+
+            <!-- ================= STOCK ================= -->
+
+            <section id="stock" class="page">
+
+                <div class="page-header">
+
+                    <div>
+                        <h1>Stock</h1>
+                        <p>Inventory management</p>
+                    </div>
+
+                    <button class="primary-button" id="addStockButton">
+                        + Add Stock
+                    </button>
+
+                </div>
+
+                <div class="card table-card">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Product</th>
+                                <th>Category</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="stockTable"></tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= PROMOTIONS ================= -->
+
+            <section id="promotions" class="page">
+
+                <div class="page-header">
+
+                    <div>
+                        <h1>Promotions</h1>
+                        <p>Create and manage offers</p>
+                    </div>
+
+                    <button class="primary-button" id="addPromotionButton">
+                        + Create Promotion
+                    </button>
+
+                </div>
+
+                <div id="promotionGrid" class="promotion-grid"></div>
+
+            </section>
+
+
+            <!-- ================= ORDERS ================= -->
+
+            <section id="orders" class="page">
+
+                <div class="page-header">
+
+                    <div>
+                        <h1>Orders</h1>
+                        <p>Track customer orders</p>
+                    </div>
+
+                    <button class="primary-button" id="addOrderButton">
+                        + New Order
+                    </button>
+
+                </div>
+
+                <div class="card table-card">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Amount</th>
+                                <th>Profit</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="ordersTable"></tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= MATERIALS ================= -->
+
+            <section id="materials" class="page">
+
+                <div class="page-header">
+
+                    <div>
+                        <h1>Materials</h1>
+                        <p>Manage raw materials</p>
+                    </div>
+
+                    <button class="primary-button" id="addMaterialButton">
+                        + Add Material
+                    </button>
+
+                </div>
+
+                <div id="materialGrid" class="material-grid"></div>
+
+            </section>
+
+
+            <!-- ================= CERTIFICATES ================= -->
+
+            <section id="certificates" class="page">
+
+                <div class="page-header">
+
+                    <div>
+                        <h1>Certificates</h1>
+                        <p>Business documents</p>
+                    </div>
+
+                    <button class="primary-button" id="addCertificateButton">
+                        + Add Certificate
+                    </button>
+
+                </div>
+
+                <div id="certificateList"></div>
+
+            </section>
+
+
+            <!-- ================= DEBT ================= -->
+
+            <section id="debt" class="page">
+
+                <div class="page-header">
+
+                    <div>
+                        <h1>Debt</h1>
+                        <p>Track outstanding payments</p>
+                    </div>
+
+                    <button class="primary-button" id="addDebtButton">
+                        + Add Debt
+                    </button>
+
+                </div>
+
+                <div class="debt-summary">
+
+                    <div class="debt-stat">
+                        <span>Total Outstanding</span>
+                        <strong id="totalDebt">₹0</strong>
+                    </div>
+
+                    <div class="debt-stat">
+                        <span>Pending Customers</span>
+                        <strong id="debtCustomers">0</strong>
+                    </div>
+
+                </div>
+
+                <div class="card table-card">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Customer</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="debtTable"></tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= ASSISTANT ================= -->
+
+            <section id="assistant" class="page">
+
+                <div class="page-header">
+
+                    <div>
+                        <h1>🤖 Business Assistant</h1>
+                        <p>Your local business assistant</p>
+                    </div>
+
+                </div>
+
+                <div class="assistant-card">
+
+                    <div class="assistant-top">
+
+                        <div class="assistant-avatar">
+                            🤖
+                        </div>
+
+                        <div>
+                            <h2>Vendor AI Assistant</h2>
+                            <p>Ask about your business data.</p>
+                        </div>
+
+                    </div>
+
+
+                    <div id="assistantMessages" class="assistant-messages">
+
+                        <div class="assistant-message ai">
+                            Hello! I'm your Vendor Business Assistant. Ask me about sales, stock, customers, orders, tasks, profit or debt.
+                        </div>
+
+                    </div>
+
+
+                    <div class="assistant-input">
+
+                        <input
+                            id="assistantInput"
+                            type="text"
+                            placeholder="Ask: How much is my total sales?"
+                        >
+
+                        <button id="voiceButton">
+                            🎤
+                        </button>
+
+                        <button id="assistantSend">
+                            Send
+                        </button>
+
+                    </div>
+
+                    <div class="assistant-suggestions">
+
+                        <button>How are my sales?</button>
+                        <button>Which stock is low?</button>
+                        <button>Show my pending tasks</button>
+                        <button>How much debt is pending?</button>
+                        <button>How much profit did I make?</button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- ================= MODAL ================= -->
+
+    <div id="modalOverlay" class="modal-overlay">
+
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <h2 id="modalTitle">Add</h2>
+
+                <button id="modalClose">
+                    ×
+                </button>
+
+            </div>
+
+            <div id="modalBody"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= NOTIFICATIONS ================= -->
+
+    <div id="notificationPanel" class="notification-panel">
+
+        <div class="notification-header">
+
+            <strong>Notifications</strong>
+
+            <button id="closeNotifications">
+                ×
+            </button>
+
+        </div>
+
+        <div id="notificationList"></div>
+
+    </div>
+
+
+    <!-- ================= PROFILE ================= -->
+
+    <div id="profilePanel" class="profile-panel">
+
+        <div class="profile-large">
+            V
+        </div>
+
+        <h3>Vendor</h3>
+
+        <p>Business Owner</p>
+
+        <button id="closeProfile">
+            Close
+        </button>
+
+    </div>
+
+
+</div>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>
